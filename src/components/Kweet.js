@@ -16,7 +16,9 @@ export default function Kweet({ kweetObj, isOwner }) {
     if (ok) {
       try {
         await deleteDoc(doc(fdb, "kweets", kweetObj.id))
-        await deleteObject(ref(storageService, kweetObj.attachmentUrl));
+        if (kweetObj.attachmentUrl !== "") {
+          await deleteObject(ref(storageService, kweetObj.attachmentUrl));
+        }
 
       } catch (error) {
         console.log(error);
