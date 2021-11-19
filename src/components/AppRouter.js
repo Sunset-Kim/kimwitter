@@ -6,11 +6,11 @@ import Navigation from "components/Navigation";
 import Profile from "routes/Profile";
 import RequiredAuth from "components/RequiredAuth";
 
-export default function AppRouter({ isLoggedIn, userObj }) {
+export default function AppRouter({ refreshUserData, isLoggedIn, userObj }) {
   return <Router>
     <>
 
-      {isLoggedIn && <Navigation></Navigation>}
+      {isLoggedIn && <Navigation userObj={userObj} />}
 
       <Routes>
 
@@ -22,7 +22,7 @@ export default function AppRouter({ isLoggedIn, userObj }) {
 
         <Route exact path="/profile" element={
           <RequiredAuth isLoggedIn={isLoggedIn}>
-            <Profile userObj={userObj} />
+            <Profile refreshUserData={refreshUserData} userObj={userObj} />
           </RequiredAuth>
         } />
 

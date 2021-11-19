@@ -1,12 +1,12 @@
+import { updateProfile } from '@firebase/auth';
 import { collection, getDocs, orderBy, query, where } from '@firebase/firestore';
 import Kweet from 'components/Kweet';
 import React, { useEffect, useState } from 'react'
 import { authService, fdb, logOut } from 'service/fbase'
 
-export default function Profile({ userObj }) {
-
+export default function Profile({ refreshUserData, userObj }) {
+  const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
   const [ownKweets, setOwnKweets] = useState([]);
-
 
   // #1. logout
   const onLogOutClick = () => {
@@ -30,6 +30,29 @@ export default function Profile({ userObj }) {
     setOwnKweets([...ownKweetList])
   };
 
+  // #3. change user display name
+  const handleChangeDisplayName = (event) => {
+    const { target: { value } } = event;
+    console.log(value)
+    setNewDisplayName(value)
+  }
+
+  const handleSubmitDisplayName = async (event) => {
+    event.preventDefault();
+    // 유저 디스플레이 이름을 바꿈
+    if (userObj.displayName === newDisplayName) return
+
+    await updateProfile(authService.currentUser, {
+      displayName: newDisplayName
+    })
+
+    console.log("update complete")
+    console.log(refreshUserData);
+    refreshUserData();
+
+
+  }
+
   useEffect(() => {
     getOwnKweet(userObj.uid);
   }, []);
@@ -41,8 +64,17 @@ export default function Profile({ userObj }) {
       <button onClick={onLogOutClick}>Logout</button>
       <div>
         <div>
-          <button>새로고침</button>
+          <h2>내 프로필</h2>
+          <form onSubmit={handleSubmitDisplayName}>
+            <input type="text" placeholder="set your new display name" value={newDisplayName} onChange={handleChangeDisplayName} />
+            <input type="submit" value="change" />
+          </form>
         </div>
+        <div>
+          <h3>새로고침</h3>
+          <button onClick={() => { getOwnKweet(userObj.uid) }}>새로고침</button>
+        </div>
+        <h3>내가 쓴 kweets</h3>
         {ownKweets && ownKweets.length > 0 &&
           <div>
             {ownKweets.map(kweet => <Kweet key={kweet.id} kweetObj={kweet} isOwner={true} />)}

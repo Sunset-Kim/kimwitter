@@ -21,10 +21,13 @@ function App() {
     return () => { }
   }, [])
 
+  const refreshUserData = () => {
+    setUserObj({ ...authService.currentUser });
+  }
 
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initailizing..."}
+      {init ? <AppRouter refreshUserData={refreshUserData} isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initailizing..."}
       <footer>&copy; footer</footer>
     </>
   );
