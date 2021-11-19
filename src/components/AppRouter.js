@@ -13,6 +13,7 @@ export default function AppRouter({ isLoggedIn, userObj }) {
       {isLoggedIn && <Navigation></Navigation>}
 
       <Routes>
+
         <Route exact path="/" element={
           <RequiredAuth isLoggedIn={isLoggedIn}>
             <Home userObj={userObj} />
@@ -21,7 +22,7 @@ export default function AppRouter({ isLoggedIn, userObj }) {
 
         <Route exact path="/profile" element={
           <RequiredAuth isLoggedIn={isLoggedIn}>
-            <Profile />
+            <Profile userObj={userObj} />
           </RequiredAuth>
         } />
 
@@ -29,9 +30,7 @@ export default function AppRouter({ isLoggedIn, userObj }) {
           <Login />
         } />
 
-
       </Routes>
-
     </>
   </Router >
 }
