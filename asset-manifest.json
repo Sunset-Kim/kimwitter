@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/Sunset-Kim/kimwitter/static/js/main.0f33569d.chunk.js",
-    "main.js.map": "/Sunset-Kim/kimwitter/static/js/main.0f33569d.chunk.js.map",
-    "runtime-main.js": "/Sunset-Kim/kimwitter/static/js/runtime-main.c998652d.js",
-    "runtime-main.js.map": "/Sunset-Kim/kimwitter/static/js/runtime-main.c998652d.js.map",
-    "static/js/2.8a82284d.chunk.js": "/Sunset-Kim/kimwitter/static/js/2.8a82284d.chunk.js",
-    "static/js/2.8a82284d.chunk.js.map": "/Sunset-Kim/kimwitter/static/js/2.8a82284d.chunk.js.map",
-    "index.html": "/Sunset-Kim/kimwitter/index.html",
-    "static/js/2.8a82284d.chunk.js.LICENSE.txt": "/Sunset-Kim/kimwitter/static/js/2.8a82284d.chunk.js.LICENSE.txt"
+    "main.js": "/kimwitter/static/js/main.0f33569d.chunk.js",
+    "main.js.map": "/kimwitter/static/js/main.0f33569d.chunk.js.map",
+    "runtime-main.js": "/kimwitter/static/js/runtime-main.f027ba21.js",
+    "runtime-main.js.map": "/kimwitter/static/js/runtime-main.f027ba21.js.map",
+    "static/js/2.cfc6e5cf.chunk.js": "/kimwitter/static/js/2.cfc6e5cf.chunk.js",
+    "static/js/2.cfc6e5cf.chunk.js.map": "/kimwitter/static/js/2.cfc6e5cf.chunk.js.map",
+    "index.html": "/kimwitter/index.html",
+    "static/js/2.cfc6e5cf.chunk.js.LICENSE.txt": "/kimwitter/static/js/2.cfc6e5cf.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c998652d.js",
-    "static/js/2.8a82284d.chunk.js",
+    "static/js/runtime-main.f027ba21.js",
+    "static/js/2.cfc6e5cf.chunk.js",
     "static/js/main.0f33569d.chunk.js"
   ]
 }
