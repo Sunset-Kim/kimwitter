@@ -27,7 +27,7 @@ export default function AppRouter({ refreshUserData, isLoggedIn, userObj }) {
         } />
 
         <Route exact path="/login" element={
-          <Login />
+          <Login refreshUserData={refreshUserData} userObj={userObj} />
         } />
 
       </Routes>

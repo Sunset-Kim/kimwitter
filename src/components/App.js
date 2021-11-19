@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AppRouter from "components/AppRouter";
 import { authService, onAuthChanged } from "service/fbase";
+import { updateProfile } from "@firebase/auth";
 
 
 function App() {
@@ -10,11 +11,16 @@ function App() {
 
   useEffect(() => {
     onAuthChanged(authService, (user) => {
+
       if (user) {
-        setIsLoggedIn(true)
-        setUserObj(user);
+        if (user.displayName === null) {
+          updateProfile(user, { displayName: 'Default' })
+        }
+        setUserObj({ ...user });
+        setIsLoggedIn(true);
       } else {
-        setIsLoggedIn(false)
+        setIsLoggedIn(false);
+        setUserObj(null);
       }
       setInit(true)
     });

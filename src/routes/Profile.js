@@ -2,15 +2,18 @@ import { updateProfile } from '@firebase/auth';
 import { collection, getDocs, orderBy, query, where } from '@firebase/firestore';
 import Kweet from 'components/Kweet';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router';
 import { authService, fdb, logOut } from 'service/fbase'
 
 export default function Profile({ refreshUserData, userObj }) {
+  const navigation = useNavigate();
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
   const [ownKweets, setOwnKweets] = useState([]);
 
   // #1. logout
   const onLogOutClick = () => {
     logOut(authService);
+    navigation("/login");
   };
 
   // #2. get own kweet
@@ -46,11 +49,7 @@ export default function Profile({ refreshUserData, userObj }) {
       displayName: newDisplayName
     })
 
-    console.log("update complete")
-    console.log(refreshUserData);
     refreshUserData();
-
-
   }
 
   useEffect(() => {
