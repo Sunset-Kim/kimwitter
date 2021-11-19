@@ -1,7 +1,11 @@
+
 import { deleteDoc, doc, setDoc } from '@firebase/firestore';
+import { deleteObject, ref } from '@firebase/storage';
+
 import React, { useState } from 'react'
 
-import { fdb } from 'service/fbase';
+import { fdb, storageService } from 'service/fbase';
+
 
 export default function Kweet({ kweetObj, isOwner }) {
   const [editing, setEditing] = useState(false);
@@ -12,6 +16,8 @@ export default function Kweet({ kweetObj, isOwner }) {
     if (ok) {
       try {
         await deleteDoc(doc(fdb, "kweets", kweetObj.id))
+        await deleteObject(ref(storageService, kweetObj.attachmentUrl));
+
       } catch (error) {
         console.log(error);
       }
@@ -23,6 +29,7 @@ export default function Kweet({ kweetObj, isOwner }) {
   const toggleEditing = () => {
     setEditing(prev => !prev);
   }
+
   const onChangeHandler = (event) => {
     const { target: { value } } = event;
     console.log(value);
@@ -42,6 +49,10 @@ export default function Kweet({ kweetObj, isOwner }) {
 
   return (
     <div>
+      {
+        kweetObj.attachmentUrl &&
+        <img src={kweetObj.attachmentUrl} alt="" />
+      }
       <h4>{kweetObj.text}</h4>
       {
         isOwner &&

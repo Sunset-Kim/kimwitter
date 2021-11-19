@@ -1,5 +1,7 @@
+
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, signOut } from "firebase/auth";
 
 const firebaseConfig = {
@@ -13,6 +15,7 @@ const firebaseConfig = {
 const fbase = initializeApp(firebaseConfig);
 
 export const authService = getAuth();
+export const storageService = getStorage();
 export const signIn = signInWithEmailAndPassword;
 export const createUser = createUserWithEmailAndPassword;
 export const onAuthChanged = onAuthStateChanged;
